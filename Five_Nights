@@ -1,0 +1,60 @@
+import pygame
+FPS = 60
+is_visible = False
+is_visible2 = False
+pygame.init()
+screen = pygame.display.set_mode((1600, 900))
+kabinet = pygame.image.load("Nash_Kabinet.png")
+kabinet = pygame.transform.scale(kabinet, (1600, 900))
+
+cadr1 = pygame.image.load("Cadr_1.png")
+cadr1 = pygame.transform.scale(cadr1, (800, 400))
+
+cadr2 = pygame.image.load("Cadr_2.png")
+cadr2 = pygame.transform.scale(cadr2, (800, 400))
+
+clock = pygame.time.Clock()
+
+
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_UP:
+            is_visible = True
+
+    screen.blit(kabinet, (0, 0))
+
+    if not is_visible:
+        pass
+    else:
+        screen.blit(cadr1, (350, 130))
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                is_visible = False
+            if event.key == pygame.K_LEFT:
+                is_visible = False
+                is_visible2 = True
+
+    if not is_visible2:
+        pass
+    else:
+        screen.blit(cadr2, (350, 130))
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                is_visible2 = False
+            if event.key == pygame.K_RIGHT:
+                is_visible2 = False
+                is_visible = True
+
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_ESCAPE:
+            pygame.quit()
+    pygame.display.flip()
+    clock.tick(FPS)
+
+pygame.quit()
