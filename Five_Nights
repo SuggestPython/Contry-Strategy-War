@@ -2,16 +2,28 @@ import pygame
 FPS = 60
 is_visible = False
 is_visible2 = False
+is_visible3 = False
+is_visible4 = False
+dvercicle = False
 pygame.init()
 screen = pygame.display.set_mode((1600, 900))
 kabinet = pygame.image.load("Nash_Kabinet.png")
 kabinet = pygame.transform.scale(kabinet, (1600, 900))
 
 cadr1 = pygame.image.load("Cadr_1.png")
-cadr1 = pygame.transform.scale(cadr1, (800, 400))
+cadr1 = pygame.transform.scale(cadr1, (300, 170))
 
-cadr2 = pygame.image.load("Cadr_2.png")
-cadr2 = pygame.transform.scale(cadr2, (800, 400))
+cadr2 = pygame.image.load("Koridor.png")
+cadr2 = pygame.transform.scale(cadr2, (300, 170))
+
+cadr3 = pygame.image.load("Lab_1.png")
+cadr3 = pygame.transform.scale(cadr3, (300, 170))
+
+cadr4 = pygame.image.load("Lab_2.png")
+cadr4 = pygame.transform.scale(cadr4, (300, 170))
+
+dveri = pygame.image.load("Dver.png")
+dveri = pygame.transform.scale(dveri, (1480, 800))
 
 clock = pygame.time.Clock()
 
@@ -23,37 +35,119 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_UP:
-            is_visible = True
-
-    screen.blit(kabinet, (0, 0))
-
-    if not is_visible:
-        pass
-    else:
-        screen.blit(cadr1, (350, 130))
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
-                is_visible = False
+            if event.key == pygame.K_UP:
+                is_visible = not is_visible
+
+        screen.blit(kabinet, (0, 0))
+
+        if not is_visible:
+            pass
+        else:
+            screen.blit(cadr1, (1070, 250))
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w:
+                    is_visible = False
+                    is_visible2 = True
+                    is_visible3 = False
+                    is_visible4 = False
+                if event.key == pygame.K_e:
+                    is_visible2 = False
+                    is_visible3 = True
+                    is_visible4 = False
+                    is_visible = False
+                if event.key == pygame.K_r:
+                    is_visible2 = False
+                    is_visible3 = False
+                    is_visible4 = True
+                    is_visible = False
+
+        if not is_visible2:
+            pass
+        else:
+            screen.blit(cadr2, (1070, 250))
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    is_visible2 = not is_visible2
+                    is_visible = not is_visible
+                if event.key == pygame.K_q:
+                    is_visible2 = False
+                    is_visible = True
+                    is_visible3 = False
+                    is_visible4 = False
+                if event.key == pygame.K_e:
+                    is_visible2 = False
+                    is_visible3 = True
+                    is_visible4 = False
+                    is_visible = False
+                if event.key == pygame.K_r:
+                    is_visible2 = False
+                    is_visible3 = False
+                    is_visible4 = True
+                    is_visible = False
+
+        if not is_visible3:
+            pass
+        else:
+            screen.blit(cadr3, (1070, 250))
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    is_visible3 = not is_visible3
+                    is_visible = not is_visible
+                if event.key == pygame.K_q:
+                    is_visible2 = False
+                    is_visible = True
+                    is_visible3 = False
+                    is_visible4 = False
+                if event.key == pygame.K_w:
+                    is_visible2 = True
+                    is_visible3 = False
+                    is_visible4 = False
+                    is_visible = False
+                if event.key == pygame.K_r:
+                    is_visible2 = False
+                    is_visible3 = False
+                    is_visible4 = True
+                    is_visible = False
+
+        if not is_visible4:
+            pass
+        else:
+            screen.blit(cadr4, (1070, 250))
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    is_visible4 = not is_visible4
+                    is_visible = not is_visible
+                if event.key == pygame.K_q:
+                    is_visible2 = False
+                    is_visible = True
+                    is_visible3 = False
+                    is_visible4 = False
+                if event.key == pygame.K_w:
+                    is_visible2 = True
+                    is_visible3 = False
+                    is_visible4 = False
+                    is_visible = False
+                if event.key == pygame.K_e:
+                    is_visible2 = False
+                    is_visible3 = True
+                    is_visible4 = False
+                    is_visible = False
+
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+
+
+        if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                is_visible = False
-                is_visible2 = True
+                dvercicle = not dvercicle
+        if dvercicle:
+            screen.blit(dveri, (-565, 135))
 
-    if not is_visible2:
-        pass
-    else:
-        screen.blit(cadr2, (350, 130))
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
-                is_visible2 = False
-            if event.key == pygame.K_RIGHT:
-                is_visible2 = False
-                is_visible = True
 
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_ESCAPE:
-            pygame.quit()
+
     pygame.display.flip()
     clock.tick(FPS)
 
